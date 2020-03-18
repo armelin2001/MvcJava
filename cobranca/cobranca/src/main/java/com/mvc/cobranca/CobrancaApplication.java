@@ -1,13 +1,13 @@
-package com.example.demo;
+package com.mvc.cobranca;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MvcApplication {
+public class CobrancaApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MvcApplication.class, args);
+		SpringApplication.run(CobrancaApplication.class, args);
 	}
 
 }

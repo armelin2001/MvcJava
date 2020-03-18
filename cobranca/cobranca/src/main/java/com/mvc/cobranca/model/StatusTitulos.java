@@ -1,10 +1,10 @@
-package models;
+package com.mvc.cobranca.model;
 
-public enum StatusTitulo {
+public enum StatusTitulos {
 	PENDENTE("Pendente"),
-	RECIBIDO("Recebido");
+	RECEBIDO("Recebido");
 	private String descricao;
-	StatusTitulo(String descricao){
+	StatusTitulos(String descricao){
 		this.descricao = descricao;
 	}
 	public String getDescricao() {
