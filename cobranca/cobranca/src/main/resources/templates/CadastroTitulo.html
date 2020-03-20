@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorator="LayoutPrincipal">
+<head>
+	<title>Cadastro de título</title>
+</head>
+<section layout:fragment="conteudo">
+	<div class="container">
+		<form class="from-horizontal" method="POST" action="/titulos" th:object="${titulo}">
+			<div th:insert="Mensagem">
+			</div>
+			<div class="row justify-content-md-center">
+				<div class="col-md-8">
+					<div class="card text-center">
+						<div class="card-header">
+							Novo Titulo
+						</div>
+						<div class="card-body">
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item">
+									<div>
+										<label for="descricao" class="card-text">Descrição</label>
+										<input type="text" class="form-control" id="descricao" th:field="*{descricao}"/>
+									</div>
+								</li>
+								<li class="list-group-item">
+									<div>
+										<label for="datavencimento" class="card-text">Data de vencimento</label>
+										<input type="date" class="form-control" id="datavencimento" th:field="*{datavencimento}"/>
+									</div>
+								</li>
+								<li class="list-group-item">
+									<div th:classappend="${#fields.hasErrors('valor')}? has-error">
+										<label for="valor" class="card-text">Valor</label>
+										<input type="text" class="form-control" id="valor" th:field="*{valor}"/>
+									</div>
+								</li>
+								<li class="list-group-item">
+									<div>
+										<label>Status</label>
+										<select class="custom-select" th:field="*{status}">
+											<option th:each="status:${todosStatusTitulo}" th:value="${status}" th:text="${status.descricao}"></option>
+										</select>							
+									</div>
+								</li>
+								<li class="list-group-item">
+									<button type="submit" class="btn btn-success">Salvar</button>
+								</li>
+							</ul>		
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</section>
+</html>

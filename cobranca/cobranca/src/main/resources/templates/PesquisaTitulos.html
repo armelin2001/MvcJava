@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorator="LayoutPrincipal">
+<head>
+	<title>Pesquisa de títulos</title>
+</head>
+<section layout:fragment="conteudo">
+	<div class="row justify-content-md-center">
+		<div class="col-md-8">
+			<div class="card text-center">
+				<div class="card-header">
+					Pesquisa de títulos
+				</div>
+				<div class="card-body">
+					<ul class="list-group list-group-horizontal justify-content-md-center">
+						<li class="list-group-item col-md-1">
+							#
+						</li>
+						<li class="list-group-item col-md-2">
+							Descrição
+						</li>
+						<li class="list-group-item col-md-2">
+							Data de vencimento
+						</li>
+						<li class="list-group-item col-md-2">
+							Valor
+						</li>
+						<li class="list-group-item col-md-2">
+							Status
+						</li>
+						<li class="list-group-item col-md-3">
+							
+						</li>	
+					</ul>
+					<ul class="list-group list-group-horizontal justify-content-md-center" th:each="titulo:${titulos}" >
+						<li class="list-group-item col-md-1" th:text="${titulo.codigo}">
+						</li>
+						<li class="list-group-item col-md-2" th:text="${titulo.descricao}">
+						</li>
+						<li class="list-group-item col-md-2" th:text="${{titulo.datavencimento}}">
+						</li>
+						<li class="list-group-item col-md-2" th:text="|R$ ${{titulo.valor}}">
+						</li>
+						<li class="list-group-item col-md-2">
+							<span class="label" th:text="${titulo.status.descricao}"
+								th:classappend="${titulo.pendente ?'label-danger':'label-success'}"></span>
+						</li>
+						<li class="list-group-item col-md-3">
+							
+						</li>
+					</ul>
+					<ul class="list-group list-group-horizontal justify-content-md-center">
+						<li class="list-group-item col-md-10" th:if="${#lists.isEmpty(titulos)}">
+							Nenhum título foi encontrado
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+</html>
