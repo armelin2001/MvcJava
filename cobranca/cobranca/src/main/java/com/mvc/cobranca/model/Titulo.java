@@ -38,10 +38,9 @@ public class Titulo{
 	private BigDecimal valor;
 	
 	@NotNull(message="Escolha uma data")
-	@DateTimeFormat(pattern="dd/MM/yyyy")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	private Date datavencimento;
-
 	@Enumerated(EnumType.STRING)
 	private StatusTitulos status;
 	

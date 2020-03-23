@@ -20,6 +20,7 @@
 						<div class="card-body">
 							<ul class="list-group list-group-flush">
 								<li class="list-group-item">
+									<input type="hidden" th:field="*{codigo}"/>
 									<div>
 										<label for="descricao" class="card-text">Descrição</label>
 										<input type="text" class="form-control" id="descricao" th:field="*{descricao}"/>
@@ -28,7 +29,7 @@
 								<li class="list-group-item">
 									<div>
 										<label for="datavencimento" class="card-text">Data de vencimento</label>
-										<input type="date" class="form-control" id="datavencimento" th:field="*{datavencimento}"/>
+										<input type="date" class="form-control" id="datavencimento" th:text="${#dates.format(titulo.datavencimento,'dd/MM/yyyy')}" th:field="*{datavencimento}"/>
 									</div>
 								</li>
 								<li class="list-group-item">
