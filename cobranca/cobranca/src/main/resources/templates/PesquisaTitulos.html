@@ -7,8 +7,10 @@
 	<title>Pesquisa de títulos</title>
 </head>
 <section layout:fragment="conteudo">
+<div layout:insert="MensagemGeral">
+</div>
 	<div class="row justify-content-md-center">
-		<div class="col-md-8">
+		<div class="col-md-12">
 			<div class="card text-center">
 				<div class="card-header">
 					Pesquisa de títulos
@@ -30,7 +32,7 @@
 						<li class="list-group-item col-md-2">
 							Status
 						</li>
-						<li class="list-group-item col-md-3">
+						<li class="list-group-item col-md-6">
 							
 						</li>	
 					</ul>
@@ -43,18 +45,22 @@
 						</li>
 						<li class="list-group-item col-md-2" th:text="|R$ ${{titulo.valor}}">
 						</li>
-						<li class="list-group-item col-md-2">
-							<span class="label" th:text="${titulo.status.descricao}"
-								th:classappend="${titulo.pendente ?'label-danger':'label-success'}"></span>
+						<li class="list-group-item col-md-2" th:attr="data-role=${titulo.codigo}">
+							<span class="badge" th:text="${titulo.status.descricao}"
+								th:classappend="${titulo.pendente ?'badge-danger':'badge-success'}"></span>
 						</li>
-						<li class="list-group-item col-md-3">
-							<a class="btn btn-link btn-xs" th:href="@{/titulos/{codigo}(codigo=${titulo.codigo})}">
-								<span class="glyphicon glyphicon-pencil">Editar</span>
+						<li class="list-group-item col-md-6">
+							<a class="btn btn-warning col-md-2" th:href="@{/titulos/{codigo}(codigo=${titulo.codigo})}">
+								Editar
 							</a>
-							<a class="btn btn-link btn-xs" th:attr="data-codigo=${titulo.codigo}, data-descricao=${titulo.descricao}" 
+							<a class="btn btn-danger col-md-2" th:attr="data-codigo=${titulo.codigo}, data-descricao=${titulo.descricao}" 
 							data-toggle="modal" data-target="#confirmacaoExclusaoModal" >
-									
-									<span>Excluir</span>
+								<span>Excluir</span>
+							</a>
+							<a class="btn btn-primary js-atualizar-status col-md-2" th:if="${titulo.pendente}"
+								th:href="@{/titulos/{codigo}/receber(codigo=${titulo.codigo})}"
+								th:attr="data-codigo=${titulo.codigo}">
+								<span>Receber</span>
 							</a>
 						</li>
 					</ul>
@@ -66,7 +72,7 @@
 				</div>
 			</div>
 		</div>
-		<div layout:insert="DialogoConfirmacaoExclusao">
+		<div layout:insert="DialogoConfirmacaoExlusao">
 		</div>
 	</div>
 </section>
