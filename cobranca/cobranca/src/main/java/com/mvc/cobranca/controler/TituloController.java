@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.mvc.cobranca.model.StatusTitulos;
 import com.mvc.cobranca.model.Titulo;
 import com.mvc.cobranca.repositorio.Titulos;
+import com.mvc.cobranca.repositorio.filter.TituloFilter;
 import com.mvc.cobranca.service.CadastroTituloService;
 
 
@@ -27,8 +28,6 @@ import com.mvc.cobranca.service.CadastroTituloService;
 @RequestMapping("/titulos")
 public class TituloController {
 	private static final String CADASTRO_VIEW = "CadastroTitulo";
-	@Autowired
-	private Titulos titulos;
 	@Autowired
 	private CadastroTituloService cadastroTituloService;
 	
@@ -52,8 +51,8 @@ public class TituloController {
 		return Arrays.asList(StatusTitulos.values());
 	}
 	@RequestMapping
-	public ModelAndView pesquisar(){
-		List<Titulo> todosTitulos = titulos.findAll();
+	public ModelAndView pesquisar(@ModelAttribute("filtro") TituloFilter filtro){
+		List<Titulo> todosTitulos = cadastroTituloService.filtrar(filtro);
 		ModelAndView mv= new ModelAndView("PesquisaTitulos"); 
 		mv.addObject("titulos",todosTitulos);
 		return mv;
